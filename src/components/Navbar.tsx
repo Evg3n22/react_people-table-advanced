@@ -10,7 +10,7 @@ export const Navbar = () => {
   // Якщо ми вже в розділі People (наприклад, /people/some-slug),
   // беремо поточний шлях (який включає slug) і поточні фільтри.
   // Якщо ні (наприклад, ми на /home), ведемо просто на базовий /people.
-  const targetPath = isPeopleSection ? location.pathname : '/people';
+  // const targetPath = isPeopleSection ? location.pathname : '/people';
   const targetSearch = isPeopleSection ? location.search : '';
 
   return (
@@ -40,7 +40,7 @@ export const Navbar = () => {
                 ? 'has-background-grey-lighter'
                 : '',
             )}
-            to={`${targetPath}${targetSearch}`}
+            to={`/people${targetSearch}`}
           >
             People
           </Link>

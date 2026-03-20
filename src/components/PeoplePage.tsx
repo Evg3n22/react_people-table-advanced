@@ -5,30 +5,30 @@ import { PeopleTable } from './PeopleTable';
 import { useEffect, useState } from 'react';
 import { getPeople } from '../api';
 import { Person } from '../types';
-import { SearchParams } from '../utils/searchHelper';
+// import { SearchParams } from '../utils/searchHelper';
 import { useSearchParams } from 'react-router-dom';
 
-export function getSearchWith(
-  paramsToUpdate: SearchParams,
-  search?: string | URLSearchParams,
-): string {
-  const newParams = new URLSearchParams(search);
+// export function getSearchWith(
+//   paramsToUpdate: SearchParams,
+//   search?: string | URLSearchParams,
+// ): string {
+//   const newParams = new URLSearchParams(search);
 
-  Object.entries(paramsToUpdate).forEach(([key, value]) => {
-    if (value === null) {
-      newParams.delete(key);
-    } else if (Array.isArray(value)) {
-      newParams.delete(key);
-      value.forEach(part => {
-        newParams.append(key, part);
-      });
-    } else {
-      newParams.set(key, value);
-    }
-  });
+//   Object.entries(paramsToUpdate).forEach(([key, value]) => {
+//     if (value === null) {
+//       newParams.delete(key);
+//     } else if (Array.isArray(value)) {
+//       newParams.delete(key);
+//       value.forEach(part => {
+//         newParams.append(key, part);
+//       });
+//     } else {
+//       newParams.set(key, value);
+//     }
+//   });
 
-  return newParams.toString();
-}
+//   return newParams.toString();
+// }
 
 export const PeoplePage = () => {
   const [people, setPeople] = useState<Person[]>();
@@ -125,7 +125,7 @@ export const PeoplePage = () => {
       <div className="block">
         <div className="columns is-desktop is-flex-direction-row-reverse">
           <div className="column is-7-tablet is-narrow-desktop">
-            <PeopleFilters />
+            {!isLoading && !hasError && <PeopleFilters />}
           </div>
 
           <div className="column">

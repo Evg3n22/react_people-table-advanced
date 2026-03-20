@@ -6,7 +6,7 @@ import {
 } from 'react-router-dom';
 import { Person } from '../types';
 import cn from 'classnames';
-import { getSearchWith } from './PeoplePage';
+import { getSearchWith } from '../utils/searchHelper';
 
 /* eslint-disable jsx-a11y/control-has-associated-label */
 type Props = {

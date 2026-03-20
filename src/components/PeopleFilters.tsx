@@ -1,6 +1,7 @@
 import { ChangeEvent, useEffect, useState } from 'react';
 import { Link, useSearchParams, useLocation } from 'react-router-dom';
-import { getSearchWith } from './PeoplePage';
+// import { getSearchWith } from './PeoplePage';
+import { getSearchWith } from '../utils/searchHelper';
 import cn from 'classnames';
 
 export const PeopleFilters = () => {
