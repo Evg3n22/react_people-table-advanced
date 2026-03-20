@@ -1,11 +1,18 @@
-import { ChangeEvent, useState } from 'react';
-import { Link, useSearchParams } from 'react-router-dom';
+import { ChangeEvent, useEffect, useState } from 'react';
+import { Link, useSearchParams, useLocation } from 'react-router-dom';
 import { getSearchWith } from './PeoplePage';
 import cn from 'classnames';
 
 export const PeopleFilters = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const [inputValue, setInputValue] = useState('');
+  const location = useLocation();
+
+  useEffect(() => {
+    const q = searchParams.get('query') ?? '';
+
+    setInputValue(q);
+  }, [searchParams]);
 
   const addCentury = (c: number) => {
     const existing = searchParams.getAll('centuries');
@@ -39,7 +46,7 @@ export const PeopleFilters = () => {
         <Link
           className={cn(!searchParams.has('sex') ? 'is-active' : '')}
           to={{
-            pathname: '/people',
+            pathname: location.pathname,
             search: getSearchWith({ sex: null }, searchParams),
           }}
         >
@@ -48,7 +55,7 @@ export const PeopleFilters = () => {
         <Link
           className={cn(searchParams.get('sex') === 'm' ? 'is-active' : '')}
           to={{
-            pathname: '/people',
+            pathname: location.pathname,
             search: getSearchWith({ sex: 'm' }, searchParams),
           }}
         >
@@ -57,7 +64,7 @@ export const PeopleFilters = () => {
         <Link
           className={cn(searchParams.get('sex') === 'f' ? 'is-active' : '')}
           to={{
-            pathname: '/people',
+            pathname: location.pathname,
             search: getSearchWith({ sex: 'f' }, searchParams),
           }}
         >
@@ -94,7 +101,7 @@ export const PeopleFilters = () => {
                   : '',
               )}
               to={{
-                pathname: '/people',
+                pathname: location.pathname,
                 search: addCentury(16),
               }}
             >
@@ -110,7 +117,7 @@ export const PeopleFilters = () => {
                   : '',
               )}
               to={{
-                pathname: '/people',
+                pathname: location.pathname,
                 search: addCentury(17),
               }}
             >
@@ -126,7 +133,7 @@ export const PeopleFilters = () => {
                   : '',
               )}
               to={{
-                pathname: '/people',
+                pathname: location.pathname,
                 search: addCentury(18),
               }}
             >
@@ -142,7 +149,7 @@ export const PeopleFilters = () => {
                   : '',
               )}
               to={{
-                pathname: '/people',
+                pathname: location.pathname,
                 search: addCentury(19),
               }}
             >
@@ -158,7 +165,7 @@ export const PeopleFilters = () => {
                   : '',
               )}
               to={{
-                pathname: '/people',
+                pathname: location.pathname,
                 search: addCentury(20),
               }}
             >
@@ -171,7 +178,7 @@ export const PeopleFilters = () => {
               data-cy="centuryALL"
               className="button is-success is-outlined"
               to={{
-                pathname: '/people',
+                pathname: location.pathname,
                 search: getSearchWith({ centuries: null }, searchParams),
               }}
             >
@@ -185,7 +192,7 @@ export const PeopleFilters = () => {
         <Link
           className="button is-link is-outlined is-fullwidth"
           to={{
-            pathname: '/people',
+            pathname: location.pathname,
             search: getSearchWith(
               {
                 centuries: null,

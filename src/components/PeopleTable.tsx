@@ -1,4 +1,9 @@
-import { Link, useParams, useSearchParams } from 'react-router-dom';
+import {
+  Link,
+  useParams,
+  useSearchParams,
+  useLocation,
+} from 'react-router-dom';
 import { Person } from '../types';
 import cn from 'classnames';
 import { getSearchWith } from './PeoplePage';
@@ -11,6 +16,7 @@ type Props = {
 export const PeopleTable = ({ people }: Props) => {
   const { slug } = useParams();
   const [searchParams] = useSearchParams();
+  const location = useLocation();
 
   if (!people) {
     return;
@@ -53,7 +59,7 @@ export const PeopleTable = ({ people }: Props) => {
               Name
               <Link
                 to={{
-                  pathname: '/people',
+                  pathname: location.pathname,
                   search: handleHeaderSort('name'),
                 }}
               >
@@ -79,7 +85,7 @@ export const PeopleTable = ({ people }: Props) => {
               Sex
               <Link
                 to={{
-                  pathname: '/people',
+                  pathname: location.pathname,
                   search: handleHeaderSort('sex'),
                 }}
               >
@@ -105,7 +111,7 @@ export const PeopleTable = ({ people }: Props) => {
               Born
               <Link
                 to={{
-                  pathname: '/people',
+                  pathname: location.pathname,
                   search: handleHeaderSort('born'),
                 }}
               >
@@ -131,7 +137,7 @@ export const PeopleTable = ({ people }: Props) => {
               Died
               <Link
                 to={{
-                  pathname: '/people',
+                  pathname: location.pathname,
                   search: handleHeaderSort('died'),
                 }}
               >
